@@ -37,10 +37,10 @@ export default function App() {
     },
     {
       onPress: () => {
-        setCalculateString(CalculateString + '/');
+        setCalculateString(CalculateString + '÷');
       },
       color: '#FE9E0B',
-      title: '/',
+      title: '÷',
     },
     {
       onPress: () => {
@@ -65,7 +65,7 @@ export default function App() {
     },
     {
       onPress: () => {
-        setCalculateString(CalculateString + '*');
+        setCalculateString(CalculateString + 'x');
       },
       color: '#FE9E0B',
       title: 'x',
@@ -150,23 +150,20 @@ export default function App() {
   ];
 
   return (
-    <View style={{ backgroundColor: '#000', width: '100%', height: '100%' }}>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          marginTop: StatusBarHeight,
-          marginBottom: 10,
-          // paddingLeft: 5,
-          // marginRight: 5,
-          height: screenHeight,
-          width: '100%',
-          position: 'relative',
-          backgroundColor: '#000',
-        }}
-      >
-        <Input CalculateString={CalculateString} />
-        <ButtonsGrid ButtonProps={ButtonsData} />
-      </SafeAreaView>
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        // paddingTop: StatusBarHeight,
+        paddingBottom: 10,
+
+        height: screenHeight,
+        width: '100%',
+        position: 'relative',
+        backgroundColor: '#000',
+      }}
+    >
+      <Input CalculateString={CalculateString} />
+      <ButtonsGrid ButtonProps={ButtonsData} />
+    </SafeAreaView>
   );
 }

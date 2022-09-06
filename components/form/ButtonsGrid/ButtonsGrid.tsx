@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     bottom: 0,
-    // marginBottom: navbarHeight || 0,
+    padding: 10,
   },
 });
 export default ButtonsGrid;

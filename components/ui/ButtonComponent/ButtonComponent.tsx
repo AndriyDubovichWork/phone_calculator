@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
 import { Dimensions } from 'react-native';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 type ButtonCProps = {
   title: string;
   onPress: any;
@@ -116,11 +117,11 @@ const style = StyleSheet.create({
   },
   WhiteText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: RFPercentage(5),
   },
   BlackText: {
     color: '#000',
-    fontSize: 20,
+    fontSize: RFPercentage(5),
   },
 });
 export default ButtonComponent;

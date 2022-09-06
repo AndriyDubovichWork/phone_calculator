@@ -4,9 +4,9 @@ const Operate = (num1: number, num2: number, operator: string) => {
       return num1 + num2;
     case '-':
       return num1 - num2;
-    case '/':
+    case '÷':
       return num1 / num2;
-    case '*':
+    case 'x':
       return num1 * num2;
   }
 };
@@ -41,26 +41,35 @@ const generateArray = (Originalinp: string) => {
 
 const YardAlgotithm = (yard: any[]) => {
   const stack: any[] = [];
-
   const quee = [];
+
   yard.map((element) => {
+    const stackLast = stack[stack.length - 1];
+
+    const isStackMultiplyOrDivide = stackLast === 'x' || stackLast === '÷';
+
+    const isElPlusOrMinus = element === '+' || element === '-';
+    const isElMultiplyOrDivide = element === 'x' || element === '÷';
     if (typeof element === 'number') {
       quee.push(element);
       return element;
     }
-    if (stack[stack.length - 1] === '+' || stack[stack.length - 1] === '-') {
-      stack.push(element);
-      return element;
-    }
-    if (stack[stack.length - 1] === '*' || stack[stack.length - 1] === '/') {
-      if (element === '+' || element === '-') {
-        quee.push(stack[stack.length - 1]);
+
+    if (isElMultiplyOrDivide) {
+      if (isStackMultiplyOrDivide) {
+        quee.push(stackLast);
         stack.pop();
+        stack.push(element);
+      } else {
         stack.push(element);
       }
       return element;
-    } else {
+    }
+    if (isElPlusOrMinus) {
+      quee.push(stackLast);
+      stack.pop();
       stack.push(element);
+
       return element;
     }
   });
@@ -92,5 +101,4 @@ const postFixToRes = (postFix: any[]) => {
 const calculate = (input: string) => {
   return postFixToRes(YardAlgotithm(generateArray(input)));
 };
-
 export default calculate;
