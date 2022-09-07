@@ -154,7 +154,7 @@ export default function App() {
       style={{
         flex: 1,
         // paddingTop: StatusBarHeight,
-        paddingBottom: 10,
+        // marginBottom: navbarHeight,
 
         height: screenHeight,
         width: '100%',

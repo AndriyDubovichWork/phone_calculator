@@ -7,7 +7,6 @@ import {
   View,
 } from 'react-native';
 import ButtonComponent from '../../ui/ButtonComponent/ButtonComponent';
-import { navbarHeight } from './../../../App';
 type ButtonsGridPropsType = {
   ButtonProps: ButtonType[];
 };
