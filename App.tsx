@@ -1,15 +1,17 @@
 import { View, StatusBar, Dimensions, Text, SafeAreaView } from 'react-native';
-import calculate from './helpers/calculate';
+import calculate from './helpers/algo/calculate';
 import ButtonComponent from './components/ui/ButtonComponent/ButtonComponent';
 import ButtonsGrid, {
   ButtonType,
 } from './components/form/ButtonsGrid/ButtonsGrid';
 import { useState } from 'react';
 import Input from './components/form/Input/Input';
+
 const StatusBarHeight = StatusBar.currentHeight || 0;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
+
 export default function App() {
   const [CalculateString, setCalculateString] = useState('');
 
