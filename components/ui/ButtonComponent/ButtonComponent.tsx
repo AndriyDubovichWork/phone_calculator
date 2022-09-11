@@ -47,7 +47,7 @@ const style = StyleSheet.create({
   DoubleButton: {
     // flex: 1,
     height: buttonSize,
-    width: buttonSize * 2.5,
+    width: buttonSize * 2.4,
     justifyContent: 'center',
     paddingLeft: '10%',
     backgroundColor: '#333333',
