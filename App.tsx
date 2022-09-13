@@ -144,7 +144,7 @@ export default function App() {
     },
     {
       onPress: () => {
-        setCalculateString(calculate(CalculateString));
+        setCalculateString(calculate(CalculateString).toString());
       },
       color: '#FE9E0B',
       title: '=',
