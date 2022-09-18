@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import LightGrayButton from '../../ui/LightGreyButton/LightGreyButton';
 import OrangeButton from '../../ui/OrangeButton/OrangeButton';
@@ -38,16 +38,19 @@ const ButtonsGrid = ({
       setCalculateString(CalculateString + input);
     }
   };
+  const [showCurles, setShowCulres] = useState(false);
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <LightGrayButton onPress={() => setCalculateString('')} title='AC' />
-        <LightGrayButton onPress={() => setCalculateString('')} title='()' />
+
+        <LightGrayButton onPress={() => pushToString('(')} title='(' />
+        <LightGrayButton onPress={() => pushToString(')')} title=')' />
+
         <LightGrayButton
           onPress={() => setCalculateString(CalculateString.slice(0, -1))}
           title='<-'
         />
-        <OrangeButton onPress={() => pushToString('÷')} title='÷' />
       </View>
       <View style={styles.row}>
         <DarkGrayButton onPress={() => pushToString('7')} title='7' />
@@ -68,8 +71,9 @@ const ButtonsGrid = ({
         <OrangeButton onPress={() => pushToString('+')} title='+' />
       </View>
       <View style={styles.row}>
-        <DoubleButton onPress={() => pushToString('0')} title='0' />
         <DarkGrayButton onPress={() => pushToString('.')} title='.' />
+
+        <DarkGrayButton onPress={() => pushToString('0')} title='0' />
 
         <OrangeButton
           onPress={() => {
@@ -77,6 +81,7 @@ const ButtonsGrid = ({
           }}
           title='='
         />
+        <OrangeButton onPress={() => pushToString('÷')} title='÷' />
       </View>
     </View>
   );
