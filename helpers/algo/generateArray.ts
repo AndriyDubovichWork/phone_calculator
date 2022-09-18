@@ -1,6 +1,6 @@
 import IsOperator from './IsOperator';
 
-const generateArray = (Originalinp: string): string[] => {
+const generateArray = (Originalinp: string): any[] => {
   if (Originalinp === '') {
     return [''];
   }
@@ -41,6 +41,9 @@ const generateArray = (Originalinp: string): string[] => {
       return elem;
     }
   });
+  if (resArr[0] === '-') {
+    resArr.unshift(0);
+  }
   return resArr;
 };
 export default generateArray;

@@ -1,40 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, Pressable } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Dimensions } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
+import CircleButton from '../CircleButton/CircleButton';
 type ButtonCProps = {
   title: string;
   onPress: any;
-  color: string;
 };
 
 const windowWidth = Dimensions.get('window').width;
-const buttonSize = (windowWidth / 100) * 20;
-const DarkGrayButtonComponent = ({ title, onPress, color }: ButtonCProps) => {
+const buttonSize = (windowWidth / 100) * 22;
+const DarkGrayButton = ({ title, onPress }: ButtonCProps) => {
   return (
-    <Pressable style={style.DarkGrayButton} onPress={onPress}>
-      <Text style={style.WhiteText}>{title}</Text>
-    </Pressable>
+    <CircleButton
+      // isDouble
+      circleDiameter={buttonSize}
+      style={style.Button}
+      onPress={onPress}
+    >
+      <Text style={style.Text}>{title}</Text>
+    </CircleButton>
   );
 };
 
 const style = StyleSheet.create({
-  DarkGrayButton: {
+  Button: {
     flex: 1,
-    width: buttonSize,
-    height: buttonSize,
-    justifyContent: 'center',
-    alignItems: 'center',
+
     backgroundColor: '#333333',
-    color: '#fff',
-    borderRadius: 100,
-    marginTop: '5%',
-    marginRight: 5,
   },
 
-  WhiteText: {
+  Text: {
     color: '#fff',
     fontSize: RFPercentage(5),
   },
 });
-export default DarkGrayButtonComponent;
+export default DarkGrayButton;

@@ -1,38 +1,83 @@
 import React from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  StatusBar,
-  Dimensions,
-  View,
-} from 'react-native';
-import ButtonComponent from '../../ui/ButtonComponent/ButtonComponent';
+import { StyleSheet, View } from 'react-native';
+import LightGrayButton from '../../ui/LightGreyButton/LightGreyButton';
+import OrangeButton from '../../ui/OrangeButton/OrangeButton';
+import DarkGrayButton from '../../ui/DarkGreyButton/DarkGreyButton';
+import DoubleButton from './../../ui/DoubleButton/DoubleButton';
+import calculate from '../../../helpers/algo/calculate';
+import IsOperator from '../../../helpers/algo/IsOperator';
 type ButtonsGridPropsType = {
-  ButtonProps: ButtonType[];
+  CalculateString: string;
+  setCalculateString: React.Dispatch<React.SetStateAction<string>>;
 };
 export type ButtonType = {
   onPress: any;
   title: string;
-  color: string;
 };
 
-const ButtonsGrid = ({ ButtonProps }: ButtonsGridPropsType) => {
+const ButtonsGrid = ({
+  CalculateString,
+  setCalculateString,
+}: ButtonsGridPropsType) => {
+  const pushToString = (input: string) => {
+    if (CalculateString === 'NaN' || CalculateString === 'cant divide by 0') {
+      setCalculateString(input);
+    } else if (
+      input === '.' &&
+      CalculateString[CalculateString.length - 1] === '.'
+    ) {
+      return;
+    } else if (
+      IsOperator(input) &&
+      IsOperator(CalculateString[CalculateString.length - 1])
+    ) {
+      let str = CalculateString.slice(0, -1);
+      str += input;
+      setCalculateString(str);
+    } else {
+      setCalculateString(CalculateString + input);
+    }
+  };
   return (
     <View style={styles.container}>
-      <FlatList
-        numColumns={4}
-        data={ButtonProps}
-        keyExtractor={(ButtonData) => ButtonData.title}
-        renderItem={({ item }) => {
-          return (
-            <ButtonComponent
-              onPress={item.onPress}
-              title={item.title}
-              color={item.color}
-            />
-          );
-        }}
-      />
+      <View style={styles.row}>
+        <LightGrayButton onPress={() => setCalculateString('')} title='AC' />
+        <LightGrayButton onPress={() => setCalculateString('')} title='()' />
+        <LightGrayButton
+          onPress={() => setCalculateString(CalculateString.slice(0, -1))}
+          title='<-'
+        />
+        <OrangeButton onPress={() => pushToString('÷')} title='÷' />
+      </View>
+      <View style={styles.row}>
+        <DarkGrayButton onPress={() => pushToString('7')} title='7' />
+        <DarkGrayButton onPress={() => pushToString('8')} title='8' />
+        <DarkGrayButton onPress={() => pushToString('9')} title='9' />
+        <OrangeButton onPress={() => pushToString('x')} title='x' />
+      </View>
+      <View style={styles.row}>
+        <DarkGrayButton onPress={() => pushToString('4')} title='4' />
+        <DarkGrayButton onPress={() => pushToString('5')} title='5' />
+        <DarkGrayButton onPress={() => pushToString('6')} title='6' />
+        <OrangeButton onPress={() => pushToString('-')} title='-' />
+      </View>
+      <View style={styles.row}>
+        <DarkGrayButton onPress={() => pushToString('1')} title='1' />
+        <DarkGrayButton onPress={() => pushToString('2')} title='2' />
+        <DarkGrayButton onPress={() => pushToString('3')} title='3' />
+        <OrangeButton onPress={() => pushToString('+')} title='+' />
+      </View>
+      <View style={styles.row}>
+        <DoubleButton onPress={() => pushToString('0')} title='0' />
+        <DarkGrayButton onPress={() => pushToString('.')} title='.' />
+
+        <OrangeButton
+          onPress={() => {
+            setCalculateString(calculate(CalculateString).toString());
+          }}
+          title='='
+        />
+      </View>
     </View>
   );
 };
@@ -43,6 +88,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     padding: 10,
+  },
+  row: {
+    marginTop: '1%',
+    marginBottom: '1%',
+    flexDirection: 'row',
   },
 });
 export default ButtonsGrid;
