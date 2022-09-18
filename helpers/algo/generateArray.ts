@@ -4,9 +4,9 @@ const generateArray = (Originalinp: string): any[] => {
   if (Originalinp === '') {
     return [''];
   }
-  const inp = Originalinp.replaceAll(' ', '')
-    .replaceAll('*', 'x')
-    .replaceAll('/', '÷');
+  console.log(typeof Originalinp);
+  const inp = Originalinp.replace(/ /g, '');
+
   let resArr = [];
   let num = '';
   for (let i = 0; i < inp.length; i++) {
