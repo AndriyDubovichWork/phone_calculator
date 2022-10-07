@@ -1,15 +1,26 @@
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-
-const CircleButton = (props: any) => {
+import { View, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+type CircleButtonProps = {
+  onPress?: any;
+  onPressOut?: any;
+  onPressIn?: any;
+  circleDiameter: number;
+  isDouble?: boolean;
+  onTop?: boolean;
+  style: any;
+  children: any;
+};
+const CircleButton = (props: CircleButtonProps) => {
   let localStyles = styles(props);
 
   return (
     <View style={localStyles.container}>
       <TouchableOpacity
-        activeOpacity={0.8}
+        activeOpacity={0.5}
         style={[localStyles.button]}
         onPress={props.onPress}
+        onPressOut={props.onPressOut}
+        onPressIn={props.onPressIn}
       >
         {props.children}
       </TouchableOpacity>
@@ -28,6 +39,7 @@ const styles = (props: any) =>
       // zIndex: 0,
     },
     button: {
+      z: props.onTop ? 5 : 1,
       alignItems: 'center',
       justifyContent: props.isDouble ? 'center' : 'center',
       backgroundColor: props.style.backgroundColor,

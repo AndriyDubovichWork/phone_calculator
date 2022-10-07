@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View, Text } from 'react-native';
 import LightGrayButton from '../../ui/LightGreyButton/LightGreyButton';
 import OrangeButton from '../../ui/OrangeButton/OrangeButton';
 import DarkGrayButton from '../../ui/DarkGreyButton/DarkGreyButton';
 import DoubleButton from './../../ui/DoubleButton/DoubleButton';
 import calculate from '../../../helpers/algo/calculate';
 import IsOperator from '../../../helpers/algo/IsOperator';
+import Draggable from 'react-native-draggable';
+import DraggeableButton from './../../ui/DraggeableButton/DraggeableButton';
+// const Swipeable = require('react-native-swipeable');
 type ButtonsGridPropsType = {
   CalculateString: string;
   setCalculateString: React.Dispatch<React.SetStateAction<string>>;
@@ -38,19 +41,30 @@ const ButtonsGrid = ({
       setCalculateString(CalculateString + input);
     }
   };
-  const [showCurles, setShowCulres] = useState(false);
+  const windowWidth = Dimensions.get('window').width;
+  const buttonSize = (windowWidth / 100) * 22;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
+        {/* {showCurles ? (
+          <LightGrayButton onPress={() => pushToString('(')} title='(' />
+        ) : (
+        )} */}
         <LightGrayButton onPress={() => setCalculateString('')} title='AC' />
-
-        <LightGrayButton onPress={() => pushToString('(')} title='(' />
-        <LightGrayButton onPress={() => pushToString(')')} title=')' />
+        <View style={{ flex: 1 }}>
+          <DraggeableButton onSwipe={pushToString} />
+        </View>
 
         <LightGrayButton
           onPress={() => setCalculateString(CalculateString.slice(0, -1))}
           title='<-'
         />
+        {/* {showCurles ? (
+          <LightGrayButton onPress={() => pushToString(')')} title=')' />
+        ) : (
+          
+        )} */}
+        <OrangeButton onPress={() => pushToString('÷')} title='÷' />
       </View>
       <View style={styles.row}>
         <DarkGrayButton onPress={() => pushToString('7')} title='7' />
@@ -71,9 +85,9 @@ const ButtonsGrid = ({
         <OrangeButton onPress={() => pushToString('+')} title='+' />
       </View>
       <View style={styles.row}>
-        <DarkGrayButton onPress={() => pushToString('.')} title='.' />
+        <DoubleButton onPress={() => pushToString('0')} title='0' />
 
-        <DarkGrayButton onPress={() => pushToString('0')} title='0' />
+        <DarkGrayButton onPress={() => pushToString('.')} title='.' />
 
         <OrangeButton
           onPress={() => {
@@ -81,7 +95,6 @@ const ButtonsGrid = ({
           }}
           title='='
         />
-        <OrangeButton onPress={() => pushToString('÷')} title='÷' />
       </View>
     </View>
   );
