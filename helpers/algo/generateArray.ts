@@ -4,7 +4,6 @@ const generateArray = (Originalinp: string): any[] => {
   if (Originalinp === '') {
     return [''];
   }
-  console.log(typeof Originalinp);
   const inp = Originalinp.replace(/ /g, '');
 
   let resArr = [];

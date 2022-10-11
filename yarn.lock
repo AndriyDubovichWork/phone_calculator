@@ -801,12 +801,19 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-transform-react-display-name@^7.0.0":
+"@babel/plugin-transform-react-display-name@^7.0.0", "@babel/plugin-transform-react-display-name@^7.18.6":
   "integrity" "sha512-TV4sQ+T013n61uMoygyMRm+xf04Bd5oqFpv2jAEQwSZ8NwQA7zeRPg1LMVg2PWi3zWBz+CLKD+v5bcpZ/BS0aA=="
   "resolved" "https://registry.npmjs.org/@babel/plugin-transform-react-display-name/-/plugin-transform-react-display-name-7.18.6.tgz"
   "version" "7.18.6"
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
+
+"@babel/plugin-transform-react-jsx-development@^7.18.6":
+  "integrity" "sha512-SA6HEjwYFKF7WDjWcMcMGUimmw/nhNRDWxr+KaLSCrkD/LMDBvWRmHAYgE1HDeF8KUuI8OAu+RT6EOtKxSW2qA=="
+  "resolved" "https://registry.npmjs.org/@babel/plugin-transform-react-jsx-development/-/plugin-transform-react-jsx-development-7.18.6.tgz"
+  "version" "7.18.6"
+  dependencies:
+    "@babel/plugin-transform-react-jsx" "^7.18.6"
 
 "@babel/plugin-transform-react-jsx-self@^7.0.0":
   "integrity" "sha512-A0LQGx4+4Jv7u/tWzoJF7alZwnBDQd6cGLh9P+Ttk4dpiL+J5p7NSNv/9tlEFFJDq3kjxOavWmbm6t0Gk+A3Ig=="
@@ -822,7 +829,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.18.6"
 
-"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.12.17":
+"@babel/plugin-transform-react-jsx@^7.0.0", "@babel/plugin-transform-react-jsx@^7.12.17", "@babel/plugin-transform-react-jsx@^7.18.6":
   "integrity" "sha512-gCy7Iikrpu3IZjYZolFE4M1Sm+nrh1/6za2Ewj77Z+XirT4TsbJcvOFOyF+fRPwU6AKKK136CZxx6L8AbSFG6A=="
   "resolved" "https://registry.npmjs.org/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.18.10.tgz"
   "version" "7.18.10"
@@ -832,6 +839,14 @@
     "@babel/helper-plugin-utils" "^7.18.9"
     "@babel/plugin-syntax-jsx" "^7.18.6"
     "@babel/types" "^7.18.10"
+
+"@babel/plugin-transform-react-pure-annotations@^7.18.6":
+  "integrity" "sha512-I8VfEPg9r2TRDdvnHgPepTKvuRomzA8+u+nhY7qSI1fR2hRNebasZEETLyM5mAUr0Ku56OkXJ0I7NHJnO6cJiQ=="
+  "resolved" "https://registry.npmjs.org/@babel/plugin-transform-react-pure-annotations/-/plugin-transform-react-pure-annotations-7.18.6.tgz"
+  "version" "7.18.6"
+  dependencies:
+    "@babel/helper-annotate-as-pure" "^7.18.6"
+    "@babel/helper-plugin-utils" "^7.18.6"
 
 "@babel/plugin-transform-regenerator@^7.18.6":
   "integrity" "sha512-poqRI2+qiSdeldcz4wTSTXBRryoq3Gc70ye7m7UD5Ww0nE29IXqMl6r7Nd15WBgRd74vloEMlShtH6CKxVzfmQ=="
@@ -1020,6 +1035,18 @@
     "@babel/plugin-transform-dotall-regex" "^7.4.4"
     "@babel/types" "^7.4.4"
     "esutils" "^2.0.2"
+
+"@babel/preset-react@^7.18.6":
+  "integrity" "sha512-zXr6atUmyYdiWRVLOZahakYmOBHtWc2WGCkP8PYTgZi0iJXDY2CN180TdrIW4OGOAdLc7TifzDIvtx6izaRIzg=="
+  "resolved" "https://registry.npmjs.org/@babel/preset-react/-/preset-react-7.18.6.tgz"
+  "version" "7.18.6"
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.18.6"
+    "@babel/helper-validator-option" "^7.18.6"
+    "@babel/plugin-transform-react-display-name" "^7.18.6"
+    "@babel/plugin-transform-react-jsx" "^7.18.6"
+    "@babel/plugin-transform-react-jsx-development" "^7.18.6"
+    "@babel/plugin-transform-react-pure-annotations" "^7.18.6"
 
 "@babel/preset-typescript@^7.13.0":
   "integrity" "sha512-s9ik86kXBAnD760aybBucdpnLsAt0jK1xqJn2juOn9lkOvSHV60os5hxoVJsPzMQxvnUJFAlkont2DvvaYEBtQ=="
@@ -1397,7 +1424,7 @@
   "resolved" "https://registry.npmjs.org/@expo/vector-icons/-/vector-icons-13.0.0.tgz"
   "version" "13.0.0"
 
-"@expo/webpack-config@^0.17.0":
+"@expo/webpack-config@^0.17.2":
   "integrity" "sha512-cgcWyVXUEH5wj4InAPCIDHAGgpkQhpzWseCj4xVjdL3paBKRMWVjPUqmdHh/exap3U0kHGr/XS+e7ZWLcgHkUw=="
   "resolved" "https://registry.npmjs.org/@expo/webpack-config/-/webpack-config-0.17.2.tgz"
   "version" "0.17.2"
@@ -9019,6 +9046,11 @@
     "css-to-react-native-transform" "^1.8.1"
     "semver" "^5.6.0"
 
+"react-native-slide-button@^1.2.1":
+  "integrity" "sha512-m9JgHeEWr5ck+20wa1IiJQLiecgw0fBB40KyepHsxMleQulvEGE1+MoOedPkXB+fCWw6GwpXfgryy7l/aOHpaw=="
+  "resolved" "https://registry.npmjs.org/react-native-slide-button/-/react-native-slide-button-1.2.1.tgz"
+  "version" "1.2.1"
+
 "react-native-super-grid@^4.5.0":
   "integrity" "sha512-UcGD9Bi+J4VUrhWtL6wp3F+Igegx2mSRo98iOXUN7k+EgvRhjL6oVWeYLGX2N/HLFLOl7A6vRXT7e8TLqGoN4Q=="
   "resolved" "https://registry.npmjs.org/react-native-super-grid/-/react-native-super-grid-4.5.0.tgz"
@@ -9466,6 +9498,11 @@
   dependencies:
     "hash-base" "^3.0.0"
     "inherits" "^2.0.1"
+
+"rn-sliding-button-fix-lifecycle-hooks@^1.1.6":
+  "integrity" "sha512-sASmx/vFmhvT4kVhd88ZHxpUjDCOwXIBs8r7V05ZyeDaaQBhCp1qrqHaUXmaRGlJ2I616qa9xEEVMcJBzWhrjg=="
+  "resolved" "https://registry.npmjs.org/rn-sliding-button-fix-lifecycle-hooks/-/rn-sliding-button-fix-lifecycle-hooks-1.1.6.tgz"
+  "version" "1.1.6"
 
 "rn-sliding-button@^1.1.5":
   "integrity" "sha512-hvejAJgSXMCRm/QRrbdX0BzV2mZcjO12GNPBbWyUX7QuBNLZpeGuKCF8UTSVGUIOO6C1kfkeAjkNvOs+g8kU0w=="

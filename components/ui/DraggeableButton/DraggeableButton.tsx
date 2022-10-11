@@ -15,11 +15,13 @@ const DraggeableButton = ({ onSwipe }: DraggeableButtonProps) => {
     <RNSlidingButton
       style={{ backgroundColor: '#000' }}
       slideDirection={SlideDirection.ANY}
-      onSlidingSuccess={(direction: 'left' | 'right') => {
+      onSlidingSuccess={(direction: any) => {
         if (direction === 'left') {
           onSwipe('(');
         } else if (direction === 'right') {
           onSwipe(')');
+        } else {
+          onSwipe('error' + direction);
         }
       }}
       height={buttonSize}
