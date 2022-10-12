@@ -3,7 +3,7 @@ import { View, Dimensions } from 'react-native';
 import { RNSlidingButton, SlideDirection } from 'rn-sliding-button';
 
 import LightGrayButtonComponent from '../LightGreyButton/LightGreyButton';
-
+import Slick from 'react-native-slick';
 type DraggeableButtonProps = {
   onSwipe: (input: string) => void;
 };
@@ -11,24 +11,27 @@ type DraggeableButtonProps = {
 const DraggeableButton = ({ onSwipe }: DraggeableButtonProps) => {
   const windowWidth = Dimensions.get('window').width;
   const buttonSize = (windowWidth / 100) * 22;
+
+  const [position, setPosition] = useState(0);
   return (
-    <RNSlidingButton
-      style={{ backgroundColor: '#000' }}
-      slideDirection={SlideDirection.ANY}
-      onSlidingSuccess={(direction: any) => {
-        if (direction === 'left') {
-          onSwipe('(');
-        } else if (direction === 'right') {
-          onSwipe(')');
-        } else {
-          onSwipe('error' + direction);
-        }
-      }}
-      height={buttonSize}
-      successfulSlidePercent={10}
-    >
-      <LightGrayButtonComponent title='( )' />
-    </RNSlidingButton>
+    <>
+      <LightGrayButtonComponent
+        title='( )'
+        onPressIn={(e: any) => {
+          setPosition(e.pageX);
+          console.log(e.pageX);
+        }}
+        onPressOut={(e: any) => {
+          if (e.locationX > position) {
+            onSwipe('(');
+          } else if (e.locationX < position) {
+            onSwipe(')');
+          } else {
+            onSwipe(e.locationX);
+          }
+        }}
+      />
+    </>
   );
 };
 

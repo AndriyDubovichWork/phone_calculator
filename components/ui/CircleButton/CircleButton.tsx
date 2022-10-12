@@ -15,14 +15,14 @@ const CircleButton = (props: CircleButtonProps) => {
 
   return (
     <View style={localStyles.container}>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={[localStyles.button]}
-        onPress={props.onPress}
-        onPressOut={props.onPressOut}
-        onPressIn={props.onPressIn}
-      >
-        {props.children}
+      <TouchableOpacity activeOpacity={0.5} style={[localStyles.button]}>
+        <Pressable
+          onPress={props.onPress}
+          onPressOut={props.onPressOut}
+          onPressIn={props.onPressIn}
+        >
+          {props.children}
+        </Pressable>
       </TouchableOpacity>
     </View>
   );

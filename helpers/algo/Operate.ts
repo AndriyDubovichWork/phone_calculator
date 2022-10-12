@@ -17,7 +17,11 @@ const Operate = (num1: number, num2: number, operator: string) => {
     case '^':
       return Math.pow(num1, num2);
     case '√':
-      return Math.pow(num2, 1 / num1);
+      if (num1 === undefined) {
+        return Math.pow(num2, 1 / 2);
+      } else {
+        return Math.pow(num2, 1 / num1);
+      }
   }
 };
 export default Operate;
