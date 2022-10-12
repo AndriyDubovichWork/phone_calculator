@@ -64,7 +64,11 @@ const NumbersGrid = ({
 
         <OrangeButton
           onPress={() => {
-            setCalculateString(calculate(CalculateString).toString());
+            setCalculateString(
+              (
+                Math.round(calculate(CalculateString) * 100000) / 100000
+              ).toString()
+            );
           }}
           title='='
         />

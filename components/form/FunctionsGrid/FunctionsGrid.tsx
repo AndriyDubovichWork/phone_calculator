@@ -38,33 +38,35 @@ const FunctionsGrid = ({
         <OrangeButton onPress={() => pushToString('√')} title='√' />
       </View>
       <View style={styles.row}>
-        <DarkGrayButton
-          onPress={() => pushToString('3.14159265359')}
-          title='π'
-        />
-        <DarkGrayButton onPress={() => pushToString('2.71828')} title='e' />
-        <DarkGrayButton onPress={() => pushToString('1÷')} title='1÷x' />
+        <DarkGrayButton onPress={() => pushToString('7')} title='7' />
+        <DarkGrayButton onPress={() => pushToString('8')} title='8' />
+        <DarkGrayButton onPress={() => pushToString('9')} title='9' />
         <OrangeButton onPress={() => pushToString('^')} title='^' />
       </View>
       <View style={styles.row}>
         <DarkGrayButton onPress={() => pushToString('4')} title='4' />
         <DarkGrayButton onPress={() => pushToString('5')} title='5' />
         <DarkGrayButton onPress={() => pushToString('6')} title='6' />
-        <OrangeButton onPress={() => pushToString('√')} title='√' />
+        <OrangeButton onPress={() => pushToString('3.14159265359')} title='π' />
       </View>
       <View style={styles.row}>
         <DarkGrayButton onPress={() => pushToString('1')} title='1' />
         <DarkGrayButton onPress={() => pushToString('2')} title='2' />
         <DarkGrayButton onPress={() => pushToString('3')} title='3' />
-        <OrangeButton onPress={() => pushToString('+')} title='+' />
+        <OrangeButton onPress={() => pushToString('2.71828')} title='e' />
       </View>
       <View style={styles.row}>
         <LightGrayButton onPress={() => pushToString('(')} title='(' />
+        <DarkGrayButton onPress={() => pushToString('0')} title='0' />
         <LightGrayButton onPress={() => pushToString(')')} title=')' />
 
         <OrangeButton
           onPress={() => {
-            setCalculateString(calculate(CalculateString).toString());
+            setCalculateString(
+              (
+                Math.round(calculate(CalculateString) * 100000) / 100000
+              ).toString()
+            );
           }}
           title='='
         />
