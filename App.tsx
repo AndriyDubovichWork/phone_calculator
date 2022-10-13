@@ -1,10 +1,9 @@
-import { View, StatusBar, Dimensions, Text, SafeAreaView } from 'react-native';
-import calculate from './helpers/algo/calculate';
-import ButtonsGrid, {
-  ButtonType,
-} from './components/form/ButtonsGrid/ButtonsGrid';
 import { useState } from 'react';
-import Input from './components/form/Input/Input';
+import { StatusBar, Dimensions, SafeAreaView } from 'react-native';
+
+import MainScreen from './components/ui/Screens/MainScreen/MainScreen';
+import SettingsScreen from './components/ui/Screens/SettingsScreen/SettingsScreen';
+import storage from './Storage/Storage';
 
 const StatusBarHeight = StatusBar.currentHeight || 0;
 const screenHeight = Dimensions.get('screen').height;
@@ -12,150 +11,23 @@ const windowHeight = Dimensions.get('window').height;
 export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
 
 export default function App() {
-  const [CalculateString, setCalculateString] = useState('');
+  const [screen, setScreen] = useState('main');
 
-  // const ButtonsData: ButtonType[] = [
-  //   {
-  //     onPress: () => {
-  //       setCalculateString('');
-  //     },
-  //     color: '#A5A5A5',
-  //     title: 'AC',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       alert('+/-');
-  //     },
-  //     color: '#A5A5A5',
-  //     title: '+/-',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString.slice(0, -1));
-  //     },
-  //     color: '#A5A5A5',
-  //     title: '<-',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '÷');
-  //     },
-  //     color: '#FE9E0B',
-  //     title: '÷',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '7');
-  //     },
-  //     color: '#333333',
-  //     title: '7',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '8');
-  //     },
-  //     color: '#333333',
-  //     title: '8',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '9');
-  //     },
-  //     color: '#333333',
-  //     title: '9',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + 'x');
-  //     },
-  //     color: '#FE9E0B',
-  //     title: 'x',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '4');
-  //     },
-  //     color: '#333333',
-  //     title: '4',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '5');
-  //     },
-  //     color: '#333333',
-  //     title: '5',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '6');
-  //     },
-  //     color: '#333333',
-  //     title: '6',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '-');
-  //     },
-  //     color: '#FE9E0B',
-  //     title: '-',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '1');
-  //     },
-  //     color: '#333333',
-  //     title: '1',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '2');
-  //     },
-  //     color: '#333333',
-  //     title: '2',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '3');
-  //     },
-  //     color: '#333333',
-  //     title: '3',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '+');
-  //     },
-  //     color: '#FE9E0B',
-  //     title: '+',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '0');
-  //     },
-  //     color: '#333333',
-  //     title: '0',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(CalculateString + '.');
-  //     },
-  //     color: '#333333',
-  //     title: '.',
-  //   },
-  //   {
-  //     onPress: () => {
-  //       setCalculateString(calculate(CalculateString).toString());
-  //     },
-  //     color: '#FE9E0B',
-  //     title: '=',
-  //   },
-  // ];
+  let component = <MainScreen setScreen={setScreen} />;
 
+  switch (screen) {
+    case 'main':
+      component = <MainScreen setScreen={setScreen} />;
+      break;
+
+    case 'settings':
+      component = <SettingsScreen setScreen={setScreen} />;
+      break;
+  }
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        // paddingTop: StatusBarHeight,
-        // marginBottom: navbarHeight,
 
         height: screenHeight,
         width: '100%',
@@ -163,11 +35,7 @@ export default function App() {
         backgroundColor: '#000',
       }}
     >
-      <Input CalculateString={CalculateString} />
-      <ButtonsGrid
-        CalculateString={CalculateString}
-        setCalculateString={setCalculateString}
-      />
+      {component}
     </SafeAreaView>
   );
 }

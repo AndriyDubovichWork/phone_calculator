@@ -1,44 +1,45 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, Image, Text, View } from 'react-native';
 import { RFPercentage } from 'react-native-responsive-fontsize';
-
+import Icon from 'react-native-vector-icons/AntDesign';
 type InputProps = {
   CalculateString: string;
+  setScreen: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Input = ({ CalculateString }: InputProps) => {
+const Input = ({ CalculateString, setScreen }: InputProps) => {
   return (
     <View
       style={{
-        height: '30%',
         width: '100%',
+        height: '40%',
+
         position: 'relative',
       }}
     >
-      <ScrollView
-        horizontal={true}
-        decelerationRate={0.5}
-        invertStickyHeaders
-        contentContainerStyle={styles.container}
-        // style={{ position: 'relative', flexGrow: 1 }}
+      <Icon
+        name='setting'
+        color={'#fff'}
+        size={35}
+        onPress={() => {
+          setScreen('settings');
+        }}
+        style={{ position: 'absolute', right: 10, top: 20 }}
+      />
+      <Text
+        style={{
+          textAlign: 'right',
+          width: '100%',
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          color: '#fff',
+          fontSize: RFPercentage(6),
+        }}
       >
-        <Text
-          style={{
-            color: '#fff',
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            fontSize: RFPercentage(6),
-          }}
-        >
-          {CalculateString}
-        </Text>
-      </ScrollView>
+        {CalculateString}
+      </Text>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
-});
+
 export default Input;
