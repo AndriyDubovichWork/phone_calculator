@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
-import LightGrayButton from '../../ui/LightGreyButton/LightGreyButton';
-import OrangeButton from '../../ui/OrangeButton/OrangeButton';
-import DarkGrayButton from '../../ui/DarkGreyButton/DarkGreyButton';
-import DoubleButton from './../../ui/DoubleButton/DoubleButton';
-import calculate from '../../../helpers/algo/calculate';
+
 import IsOperator from '../../../helpers/algo/IsOperator';
-import Draggable from 'react-native-draggable';
-import DraggeableButton from './../../ui/DraggeableButton/DraggeableButton';
-import NumbersGrid from '../NumbersGrid/NumbersGrid';
-import FunctionsGrid from '../FunctionsGrid/FunctionsGrid';
+
+import NumbersGrid from './NumbersGrid/NumbersGrid';
+import FunctionsGrid from './FunctionsGrid/FunctionsGrid';
 
 type ButtonsGridPropsType = {
   CalculateString: string;
