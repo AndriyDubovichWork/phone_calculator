@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
 type CircleButtonProps = {
   onPress?: any;
-  onPressOut?: any;
-  onPressIn?: any;
+
   circleDiameter: number;
   isDouble?: boolean;
   onTop?: boolean;
@@ -11,24 +10,28 @@ type CircleButtonProps = {
   children: any;
 };
 const CircleButton = (props: CircleButtonProps) => {
-  let localStyles = styles(props);
+  const [pressed, setPressed] = useState(false);
 
+  let localStyles = styles(props, pressed);
   return (
     <View style={localStyles.container}>
-      <TouchableOpacity
+      <Pressable
         onPress={props.onPress}
-        onPressOut={props.onPressOut}
-        onPressIn={props.onPressIn}
-        activeOpacity={0.5}
+        onPressOut={() => {
+          setPressed(false);
+        }}
+        onPressIn={() => {
+          setPressed(true);
+        }}
         style={[localStyles.button]}
       >
         {props.children}
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
 
-const styles = (props: any) =>
+const styles = (props: any, pressed: boolean) =>
   StyleSheet.create({
     container: {
       flex: props.isDouble ? 2 : 1,
@@ -46,6 +49,7 @@ const styles = (props: any) =>
       borderRadius: props.circleDiameter / 2,
       width: props.isDouble ? props.circleDiameter * 2 : props.circleDiameter,
       height: props.circleDiameter,
+      opacity: pressed ? 0.6 : 1,
     },
   });
 export default CircleButton;

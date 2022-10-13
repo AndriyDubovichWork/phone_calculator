@@ -6,26 +6,17 @@ import CircleButton from '../CircleButton/CircleButton';
 type ButtonCProps = {
   title: string;
   onPress?: any;
-  onPressIn?: any;
-  onPressOut?: any;
 };
 
 const windowWidth = Dimensions.get('window').width;
 const buttonSize = (windowWidth / 100) * 22;
-const LightGrayButtonComponent = ({
-  title,
-  onPress,
-  onPressOut,
-  onPressIn,
-}: ButtonCProps) => {
+const LightGrayButtonComponent = ({ title, onPress }: ButtonCProps) => {
   return (
     <CircleButton
       // isDouble
       circleDiameter={buttonSize}
       style={style.Button}
       onPress={onPress}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
     >
       <Text style={style.Text}>{title}</Text>
     </CircleButton>
