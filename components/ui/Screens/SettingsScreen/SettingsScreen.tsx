@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import { useState } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ImagePicker from './../../ImagePicker/ImagePicker';
-import storage from './../../../../Storage/Storage';
+import { SetImg } from './../../../../Storage/Setters/setImage';
 type SettingsScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -29,7 +29,7 @@ export default function SettingsScreen({ setScreen }: SettingsScreenProps) {
 
       <ImagePicker
         setImage={(img: string) => {
-          storage.save({ key: 'backgroundImage', data: img });
+          SetImg(img);
         }}
       />
     </View>

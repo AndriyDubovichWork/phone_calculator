@@ -5,6 +5,9 @@ import OrangeButton from '../../../ui/Buttons/OrangeButton/OrangeButton';
 import DarkGrayButton from '../../../ui/Buttons/DarkGreyButton/DarkGreyButton';
 import DoubleButton from './../../../ui/Buttons/DoubleButton/DoubleButton';
 import calculate from '../../../../helpers/algo/calculate';
+import CircleButton from './../../../ui/Buttons/CircleButton/CircleButton';
+import { getButtonsStyles } from './../../../../Storage/Getters/getButtonsStyles';
+// import { setDefaultButtonsStyles } from '../../../../Storage/Setters/setDefaultStyles';
 
 type NumbersGridPropsType = {
   CalculateString: string;
@@ -22,11 +25,36 @@ const NumbersGrid = ({
   setCalculateString,
   pushToString,
 }: NumbersGridPropsType) => {
+  // setDefaultButtonsStyles();
+  let buttonsStyles: any = getButtonsStyles();
+  console.log(buttonsStyles);
+  const GridData = [
+    [
+      {
+        Text: 'AC',
+
+        onPress: () => {
+          setCalculateString('');
+        },
+        backgroundColor: buttonsStyles[0].backgroundColor,
+        TextColor: buttonsStyles[0].TextColor,
+      },
+    ],
+  ];
   return (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <LightGrayButton onPress={() => setCalculateString('')} title='AC' />
-        <LightGrayButton
+    <>
+      <View style={styles.container}>
+        {GridData.map((row, id) => {
+          return (
+            <View style={styles.row} key={id}>
+              {row.map((buttonData) => {
+                return <CircleButton {...buttonData} key={buttonData.Text} />;
+              })}
+            </View>
+          );
+        })}
+
+        {/* <LightGrayButton
           onPress={() => setShowNumbersGrid(!showNumbersGrid)}
           title='F'
         />
@@ -71,8 +99,9 @@ const NumbersGrid = ({
           }}
           title='='
         />
+      </View> */}
       </View>
-    </View>
+    </>
   );
 };
 

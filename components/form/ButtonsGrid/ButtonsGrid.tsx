@@ -5,6 +5,8 @@ import IsOperator from '../../../helpers/algo/IsOperator';
 
 import NumbersGrid from './NumbersGrid/NumbersGrid';
 import FunctionsGrid from './FunctionsGrid/FunctionsGrid';
+import { setDefaultButtonsStyles } from '../../../Storage/Setters/setDefaultStyles';
+import { getButtonsStyles } from './../../../Storage/Getters/getButtonsStyles';
 
 type ButtonsGridPropsType = {
   CalculateString: string;
