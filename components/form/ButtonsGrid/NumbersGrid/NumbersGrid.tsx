@@ -27,7 +27,6 @@ const NumbersGrid = ({
 }: NumbersGridPropsType) => {
   // setDefaultButtonsStyles();
   let buttonsStyles: any = getButtonsStyles();
-  console.log(buttonsStyles);
   const GridData = [
     [
       {

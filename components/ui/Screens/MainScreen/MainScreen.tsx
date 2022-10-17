@@ -2,7 +2,6 @@ import { View, ImageBackground } from 'react-native';
 import ButtonsGrid from '../../../form/ButtonsGrid/ButtonsGrid';
 import { useState } from 'react';
 
-
 import Input from '../../../form/Input/Input';
 import { getImage } from './../../../../Storage/Getters/GetImg';
 
@@ -14,6 +13,8 @@ export default function MainScreen({ setScreen }: MainScreenProps) {
   const [CalculateString, setCalculateString] = useState('');
 
   const img: any = getImage();
+
+  console.log(img);
   return (
     <View>
       <ImageBackground

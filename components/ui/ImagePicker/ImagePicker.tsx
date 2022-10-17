@@ -10,10 +10,7 @@ export default function ImagePickerExample({ setImage }: { setImage: any }) {
       aspect: [9, 16],
       quality: 1,
     });
-
-    if (!result.cancelled) {
-      setImage(result.uri);
-    }
+    setImage(result.uri);
   };
 
   return <Button title='Choose BackGround Image' onPress={pickImage} />;
