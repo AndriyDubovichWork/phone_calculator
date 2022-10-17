@@ -1,5 +1,6 @@
 import * as SyncStorage from 'sync-storage';
+import setValue from './../Operations/setValue';
 
 export const SetImg = (img: string) => {
-  SyncStorage.set('backgroundImage', img);
+  setValue('backgroundImage', img);
 };

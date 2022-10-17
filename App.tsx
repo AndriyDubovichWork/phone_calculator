@@ -3,17 +3,15 @@ import { StatusBar, Dimensions, SafeAreaView } from 'react-native';
 
 import MainScreen from './components/ui/Screens/MainScreen/MainScreen';
 import SettingsScreen from './components/ui/Screens/SettingsScreen/SettingsScreen';
-import { InitStorage } from './Storage/Storage';
-import { useAsync } from 'react-async';
+import { setDefaultAllStyles } from './Storage/Setters/setDefaultStyles';
 
 const StatusBarHeight = StatusBar.currentHeight || 0;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
 
-const App = async () => {
-  const res = useAsync({ promiseFn: InitStorage });
-  console.log(res);
+const App = () => {
+  setDefaultAllStyles();
   const [screen, setScreen] = useState('main');
 
   let component = <MainScreen setScreen={setScreen} />;

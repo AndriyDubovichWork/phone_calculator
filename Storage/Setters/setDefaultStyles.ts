@@ -1,4 +1,5 @@
 import * as SyncStorage from 'sync-storage';
+import setValue from './../Operations/setValue';
 
 const defaultButtonStyle = [
   {
@@ -16,9 +17,9 @@ const defaultButtonStyle = [
 ];
 
 export const setDefaultAllStyles = () => {
-  SyncStorage.set('buttons', defaultButtonStyle);
-  SyncStorage.set('backgroundImage', '');
+  setValue('buttons', defaultButtonStyle);
+  setValue('backgroundImage', '');
 };
 export const setDefaultButtonsStyles = () => {
-  SyncStorage.set('buttons', defaultButtonStyle);
+  setValue('buttons', defaultButtonStyle);
 };
