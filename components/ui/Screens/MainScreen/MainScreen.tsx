@@ -35,6 +35,7 @@ export default function MainScreen({
       >
         <Input CalculateString={CalculateString} setScreen={setScreen} />
         <ButtonsGrid
+          buttonStyle={SpecialData.buttonStyle}
           CalculateString={CalculateString}
           setCalculateString={setCalculateString}
         />

@@ -9,6 +9,7 @@ import FunctionsGrid from './FunctionsGrid/FunctionsGrid';
 type ButtonsGridPropsType = {
   CalculateString: string;
   setCalculateString: React.Dispatch<React.SetStateAction<string>>;
+  buttonStyle: any;
 };
 export type ButtonType = {
   onPress: any;
@@ -18,6 +19,7 @@ export type ButtonType = {
 const ButtonsGrid = ({
   CalculateString,
   setCalculateString,
+  buttonStyle,
 }: ButtonsGridPropsType) => {
   const pushToString = (input: string) => {
     if (CalculateString === 'NaN' || CalculateString === 'cant divide by 0') {

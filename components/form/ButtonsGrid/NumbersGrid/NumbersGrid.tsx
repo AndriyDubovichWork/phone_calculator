@@ -6,7 +6,7 @@ import DarkGrayButton from '../../../ui/Buttons/DarkGreyButton/DarkGreyButton';
 import DoubleButton from './../../../ui/Buttons/DoubleButton/DoubleButton';
 import calculate from '../../../../helpers/algo/calculate';
 
-type NumbersGridPropsType = {
+export type NumbersGridPropsType = {
   CalculateString: string;
   setCalculateString: React.Dispatch<React.SetStateAction<string>>;
   pushToString: (input: string) => void;

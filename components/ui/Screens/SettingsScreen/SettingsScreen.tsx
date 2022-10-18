@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ImagePicker from './../../ImagePicker/ImagePicker';
 import storage from './../../../../Storage/Storage';
+import { setImg } from '../../../../Storage/set/img';
 type SettingsScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
   img: string;
@@ -53,7 +54,7 @@ export default function SettingsScreen({
 
         <ImagePicker
           setImage={(img: string) => {
-            storage.save({ key: 'backgroundImage', data: img });
+            setImg(img);
             setSpecialData({ ...SpecialData, img });
           }}
         />

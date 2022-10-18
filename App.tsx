@@ -7,19 +7,21 @@ import storage from './Storage/Storage';
 import { useAsync } from 'react-async';
 import { getImage } from './Storage/get/Img';
 import { buttonStyles } from './Storage/get/buttonStyles';
+import { setdefaultStyles } from './Storage/set/defaultStyles';
 const StatusBarHeight = StatusBar.currentHeight || 0;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
 export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
 
 export default function App() {
+  setdefaultStyles();
+
   const [screen, setScreen] = useState('main');
   const img: any = useAsync({ promiseFn: getImage }).data;
   const buttonStyle: any = useAsync({ promiseFn: buttonStyles }).data;
 
   const [SpecialData, setSpecialData] = useState({ img, buttonStyle });
 
-  console.log(img);
   const main = (
     <MainScreen setScreen={setScreen} SpecialData={SpecialData} img={img} />
   );
