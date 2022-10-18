@@ -9182,6 +9182,11 @@
     "minimist" "^1.2.0"
     "strip-json-comments" "~2.0.1"
 
+"react-async-hook@^4.0.0":
+  "integrity" "sha512-97lgjFkOcHCTYSrsKBpsXg3iVWM0LnzedB749iP76sb3/8Ouu4nHIkCLEOrQWHVYqrYxjF05NN6GHoXWFkB3Kw=="
+  "resolved" "https://registry.npmjs.org/react-async-hook/-/react-async-hook-4.0.0.tgz"
+  "version" "4.0.0"
+
 "react-async@^10.0.1":
   "integrity" "sha512-ORUz5ca0B57QgBIzEZM5SuhJ6xFjkvEEs0gylLNlWf06vuVcLZsjIw3wx58jJkZG38p+0nUAxRgFW2b7mnVZzA=="
   "resolved" "https://registry.npmjs.org/react-async/-/react-async-10.0.1.tgz"
@@ -9437,7 +9442,7 @@
     "object-assign" "^4.1.1"
     "react-is" "^16.12.0 || ^17.0.0 || ^18.0.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.0.0", "react@>=15.2.0", "react@>=16.3.1", "react@>=16.8.0", "react@>=16.8.6", "react@18.0.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0", "react@^18.0.0", "react@>=15.2.0", "react@>=16.3.1", "react@>=16.8", "react@>=16.8.0", "react@>=16.8.6", "react@18.0.0":
   "integrity" "sha512-x+VL6wbT4JRVPm7EGxXhZ8w8LTROaxPXOqhlGyVSrv0sB1jkyFGgXxJ8LVoPRLvPR6/CIZGFmfzqUa2NYeMr2A=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.0.0.tgz"
   "version" "18.0.0"

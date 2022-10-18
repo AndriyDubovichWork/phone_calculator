@@ -1,5 +1,6 @@
 import * as SyncStorage from 'sync-storage';
+import { useAsync } from 'react-async-hook';
 import getValue from './../Operations/getValue';
 export const getImage = async () => {
-  return await getValue('backgroundImage');
+  return useAsync(() => getValue('backgroundImage'), []);
 };
