@@ -9,20 +9,12 @@ import storage from './../../../../Storage/Storage';
 
 type MainScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
+  img: string;
 };
 
-const getImage = async () => {
-  return await storage.load({
-    key: 'backgroundImage',
-    autoSync: true,
-    syncInBackground: true,
-  });
-};
-
-export default function MainScreen({ setScreen }: MainScreenProps) {
+export default function MainScreen({ setScreen, img }: MainScreenProps) {
   const [CalculateString, setCalculateString] = useState('');
 
-  const img: any = useAsync({ promiseFn: getImage }).data;
   return (
     <View>
       <ImageBackground
