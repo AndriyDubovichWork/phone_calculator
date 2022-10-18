@@ -6,6 +6,7 @@ import SettingsScreen from './components/ui/Screens/SettingsScreen/SettingsScree
 import storage from './Storage/Storage';
 import { useAsync } from 'react-async';
 import { getImage } from './Storage/get/Img';
+import { buttonStyles } from './Storage/get/buttonStyles';
 const StatusBarHeight = StatusBar.currentHeight || 0;
 const screenHeight = Dimensions.get('screen').height;
 const windowHeight = Dimensions.get('window').height;
@@ -14,16 +15,31 @@ export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
 export default function App() {
   const [screen, setScreen] = useState('main');
   const img: any = useAsync({ promiseFn: getImage }).data;
+  const buttonStyle: any = useAsync({ promiseFn: buttonStyles }).data;
 
-  let component = <MainScreen setScreen={setScreen} img={img} />;
+  const [SpecialData, setSpecialData] = useState({ img, buttonStyle });
+
+  console.log(img);
+  const main = (
+    <MainScreen setScreen={setScreen} SpecialData={SpecialData} img={img} />
+  );
+  const settings = (
+    <SettingsScreen
+      img={img}
+      setScreen={setScreen}
+      SpecialData={SpecialData}
+      setSpecialData={setSpecialData}
+    />
+  );
+  let component = main;
 
   switch (screen) {
     case 'main':
-      component = <MainScreen setScreen={setScreen} img={img} />;
+      component = main;
       break;
 
     case 'settings':
-      component = <SettingsScreen setScreen={setScreen} img={img} />;
+      component = settings;
       break;
   }
   return (

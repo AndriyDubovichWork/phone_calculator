@@ -6,11 +6,23 @@ import storage from './../../../../Storage/Storage';
 type SettingsScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
   img: string;
+  setSpecialData: React.Dispatch<
+    React.SetStateAction<{
+      img: any;
+      buttonStyle: any;
+    }>
+  >;
+  SpecialData: {
+    img: any;
+    buttonStyle: any;
+  };
 };
 
 export default function SettingsScreen({
   setScreen,
   img,
+  setSpecialData,
+  SpecialData,
 }: SettingsScreenProps) {
   return (
     <View
@@ -22,7 +34,7 @@ export default function SettingsScreen({
       }}
     >
       <ImageBackground
-        source={{ uri: img }}
+        source={{ uri: SpecialData.img || img }}
         resizeMode='cover'
         style={{
           height: '100%',
@@ -42,6 +54,7 @@ export default function SettingsScreen({
         <ImagePicker
           setImage={(img: string) => {
             storage.save({ key: 'backgroundImage', data: img });
+            setSpecialData({ ...SpecialData, img });
           }}
         />
       </ImageBackground>
