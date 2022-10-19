@@ -1,9 +1,14 @@
-import { View, Text, ImageBackground } from 'react-native';
-import { useState } from 'react';
+import { View, Text, ImageBackground, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import ImagePicker from './../../ImagePicker/ImagePicker';
-import storage from './../../../../Storage/Storage';
 import { setImg } from '../../../../Storage/set/img';
+import CircleButton from '../../Buttons/CircleButton/CircleButton';
+import {
+  defaultButtonsStyles,
+  setdefaultStyles,
+} from '../../../../Storage/set/defaultStyles';
+import RegularButton from '../../Buttons/RegularButton/RegularButton';
+
 type SettingsScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
   img: string;
@@ -17,6 +22,12 @@ type SettingsScreenProps = {
     img: any;
     buttonStyle: any;
   };
+  setSelectedStyleChanger: React.Dispatch<
+    React.SetStateAction<{
+      type: string;
+      id: number;
+    }>
+  >;
 };
 
 export default function SettingsScreen({
@@ -24,7 +35,13 @@ export default function SettingsScreen({
   img,
   setSpecialData,
   SpecialData,
+  setSelectedStyleChanger,
 }: SettingsScreenProps) {
+  const ButtonsArray = [
+    { id: 0, type: 'Technical', text: 'AC' },
+    { id: 1, type: 'Numbers', text: '1' },
+    { id: 2, type: 'Operations', text: '+' },
+  ];
   return (
     <View
       style={{
@@ -56,6 +73,64 @@ export default function SettingsScreen({
           setImage={(img: string) => {
             setImg(img);
             setSpecialData({ ...SpecialData, img });
+          }}
+        />
+        {ButtonsArray.map(({ id, type, text }) => {
+          return (
+            <View style={{ flex: 1, flexDirection: 'row' }} key={text}>
+              <Text
+                style={{ color: '#fff', fontSize: 20, alignSelf: 'center' }}
+              >
+                {type}
+              </Text>
+              <View
+                style={{
+                  flex: 3,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <CircleButton
+                  Text={text}
+                  onPress={() => {}}
+                  ButtonsStyles={SpecialData.buttonStyle[id]}
+                />
+                <CircleButton
+                  ButtonsStyles={{
+                    name: 'any',
+                    TextColor: '#fff',
+                    backgroundColor: '#000',
+                  }}
+                  Text='BG'
+                  onPress={() => {
+                    setSelectedStyleChanger({ type: 'backgroundColor', id });
+                    setScreen('colourPicker');
+                  }}
+                />
+                <CircleButton
+                  ButtonsStyles={{
+                    name: 'any',
+                    TextColor: '#fff',
+                    backgroundColor: '#000',
+                  }}
+                  Text='TXT'
+                  onPress={() => {
+                    setSelectedStyleChanger({ type: 'TextColor', id });
+                    setScreen('colourPicker');
+                  }}
+                />
+              </View>
+            </View>
+          );
+        })}
+
+        <Button
+          title='set Default styles'
+          onPress={() => {
+            let SpecialDataCopy = { ...SpecialData };
+            SpecialDataCopy.buttonStyle = defaultButtonsStyles;
+            setSpecialData(SpecialDataCopy);
+            setdefaultStyles();
           }}
         />
       </ImageBackground>
