@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, SafeAreaView } from 'react-native';
+import { Button, SafeAreaView, View } from 'react-native';
 import ColorPicker from 'react-native-wheel-color-picker';
 import { setButtonStyles } from '../../../../Storage/set/buttonStyles';
 import { setMainColor } from '../../../../Storage/set/mainColor';
@@ -41,8 +41,6 @@ const ColourPickerScreen = ({
   return (
     <SafeAreaView
       style={{
-        flex: 1,
-
         width: '100%',
         height: '100%',
         // position: 'relative',
