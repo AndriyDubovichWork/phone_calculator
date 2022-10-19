@@ -1,16 +1,14 @@
 import { NumbersGridPropsType } from '../components/form/ButtonsGrid/NumbersGrid/NumbersGrid';
 import calculate from '../helpers/algo/calculate';
 
-export const NumbersGrid = (
-  {
-    showNumbersGrid,
-    setShowNumbersGrid,
-    CalculateString,
-    setCalculateString,
-    pushToString,
-  }: NumbersGridPropsType,
-  buttonStyle: any
-) => {
+const NumbersGrid = ({
+  showNumbersGrid,
+  setShowNumbersGrid,
+  CalculateString,
+  setCalculateString,
+  pushToString,
+  buttonStyle,
+}: NumbersGridPropsType) => {
   return [
     [
       {
@@ -122,3 +120,4 @@ export const NumbersGrid = (
     ],
   ];
 };
+export default NumbersGrid;

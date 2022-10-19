@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Pressable, Dimensions, Text } from 'react-native';
+import { RFPercentage } from 'react-native-responsive-fontsize';
 type CircleButtonProps = {
-  onPress?: any;
+  onPress: any;
 
-  circleDiameter: number;
+  ButtonsStyles: {
+    name: string;
+    TextColor: string;
+    backgroundColor: string;
+  };
+
+  Text: string;
   isDouble?: boolean;
-  onTop?: boolean;
-  style: any;
-  children: any;
 };
 const CircleButton = (props: CircleButtonProps) => {
   const [pressed, setPressed] = useState(false);
 
-  let localStyles = styles(props, pressed);
+  const windowWidth = Dimensions.get('window').width;
+  const buttonSize = (windowWidth / 100) * 22;
+
+  const { backgroundColor, TextColor } = props.ButtonsStyles;
+
+  let localStyles = styles(
+    props,
+    pressed,
+    buttonSize,
+
+    backgroundColor,
+    TextColor
+  );
   return (
     <View style={localStyles.container}>
       <Pressable
@@ -25,31 +41,42 @@ const CircleButton = (props: CircleButtonProps) => {
         }}
         style={[localStyles.button]}
       >
-        {props.children}
+        <Text style={localStyles.Text}>{props.Text}</Text>
       </Pressable>
     </View>
   );
 };
 
-const styles = (props: any, pressed: boolean) =>
+const styles = (
+  props: any,
+  pressed: boolean,
+  buttonSize: number,
+  backgroundColor: string,
+  TextColor: string
+) =>
   StyleSheet.create({
     container: {
       flex: props.isDouble ? 2 : 1,
-      width: props.circleDiameter,
-      height: props.circleDiameter,
-      // display: 'flex',
-      // position: 'relative',
-      // zIndex: 0,
+
+      width: buttonSize,
+      height: buttonSize,
     },
     button: {
-      z: props.onTop ? 5 : 1,
       alignItems: 'center',
       justifyContent: props.isDouble ? 'center' : 'center',
-      backgroundColor: props.style.backgroundColor,
-      borderRadius: props.circleDiameter / 2,
-      width: props.isDouble ? props.circleDiameter * 2 : props.circleDiameter,
-      height: props.circleDiameter,
+
+      backgroundColor,
+
+      borderRadius: buttonSize / 2,
+
+      width: props.isDouble ? buttonSize * 2 : buttonSize,
+      height: buttonSize,
+
       opacity: pressed ? 0.6 : 1,
+    },
+    Text: {
+      fontSize: RFPercentage(5),
+      color: TextColor,
     },
   });
 export default CircleButton;

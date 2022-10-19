@@ -19,7 +19,6 @@ const DraggeableButton = ({ onSwipe }: DraggeableButtonProps) => {
         title='( )'
         onPressIn={(e: any) => {
           setPosition(e.pageX);
-          console.log(e.pageX);
         }}
         onPressOut={(e: any) => {
           if (e.locationX > position) {

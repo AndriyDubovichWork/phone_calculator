@@ -1,6 +1,8 @@
 import storage from './../Storage';
+import { setImg } from './img';
+import { setButtonStyles } from './buttonStyles';
 
-const defaultButtonsStyles = [
+export const defaultButtonsStyles = [
   {
     name: 'technical',
     TextColor: '#000',
@@ -19,6 +21,6 @@ const defaultButtonsStyles = [
 ];
 
 export const setdefaultStyles = () => {
-  storage.save({ key: 'buttonStyles', data: defaultButtonsStyles });
-  storage.save({ key: 'backgroundImage', data: '' });
+  setButtonStyles(defaultButtonsStyles);
+  setImg('');
 };

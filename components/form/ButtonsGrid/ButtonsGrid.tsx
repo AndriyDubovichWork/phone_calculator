@@ -46,6 +46,7 @@ const ButtonsGrid = ({
     <>
       {showNumbersGrid ? (
         <NumbersGrid
+          buttonStyle={buttonStyle}
           showNumbersGrid={showNumbersGrid}
           setShowNumbersGrid={setShowNumbersGrid}
           CalculateString={CalculateString}
