@@ -127,6 +127,14 @@ export default function SettingsScreen({
         })}
 
         <Button
+          title='Change Main colour'
+          onPress={() => {
+            setSelectedStyleChanger({ type: 'MainColor', id: 0 });
+
+            setScreen('colourPicker');
+          }}
+        />
+        <Button
           title='set Default styles'
           onPress={() => {
             let SpecialDataCopy = { ...SpecialData };

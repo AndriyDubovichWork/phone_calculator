@@ -22,9 +22,10 @@ const Screens = ({ img, buttonStyle, MainColor }: ScreensPropsType) => {
     id: 0,
   });
   const [screen, setScreen] = useState('main');
+  const [color, setMainColorFunc] = useState(MainColor);
   const main = (
     <MainScreen
-      MainColor={MainColor}
+      MainColor={color}
       setScreen={setScreen}
       SpecialData={SpecialData}
       img={img}
@@ -32,7 +33,7 @@ const Screens = ({ img, buttonStyle, MainColor }: ScreensPropsType) => {
   );
   const settings = (
     <SettingsScreen
-      MainColor={MainColor}
+      MainColor={color}
       img={img}
       setScreen={setScreen}
       SpecialData={SpecialData}
@@ -42,6 +43,8 @@ const Screens = ({ img, buttonStyle, MainColor }: ScreensPropsType) => {
   );
   const colourPicker = (
     <ColourPickerScreen
+      MainColor={color}
+      setMainColorFunc={setMainColorFunc}
       SpecialData={SpecialData}
       setSpecialData={setSpecialData}
       SelectedStyleChanger={SelectedStyleChanger}

@@ -1,6 +1,7 @@
 import { SafeAreaView } from 'react-native';
 import { TriangleColorPicker } from 'react-native-color-picker';
 import { setButtonStyles } from '../../../../Storage/set/buttonStyles';
+import { setMainColor } from '../../../../Storage/set/mainColor';
 
 type ColourPickerScreenPropsType = {
   setSpecialData: React.Dispatch<
@@ -10,6 +11,7 @@ type ColourPickerScreenPropsType = {
     }>
   >;
   setScreen: React.Dispatch<React.SetStateAction<string>>;
+  setMainColorFunc: React.Dispatch<React.SetStateAction<string>>;
   SpecialData: {
     img: any;
     buttonStyle: any;
@@ -18,6 +20,7 @@ type ColourPickerScreenPropsType = {
     type: string;
     id: number;
   };
+  MainColor: any;
 };
 
 const ColourPickerScreen = ({
@@ -25,6 +28,8 @@ const ColourPickerScreen = ({
   setSpecialData,
   SelectedStyleChanger,
   setScreen,
+  setMainColorFunc,
+  MainColor,
 }: ColourPickerScreenPropsType) => {
   let SpecialDataCopy = { ...SpecialData };
 
@@ -39,36 +44,42 @@ const ColourPickerScreen = ({
         backgroundColor: '#000',
       }}
     >
-      {SelectedStyleChanger.type === 'backgroundColor' ? (
-        <TriangleColorPicker
-          onColorSelected={(color) => {
-            SpecialDataCopy.buttonStyle[
-              SelectedStyleChanger.id
-            ].backgroundColor = color;
-            setSpecialData(SpecialDataCopy);
-            setButtonStyles(SpecialDataCopy.buttonStyle);
-            setScreen('settings');
-          }}
-          defaultColor={
-            SpecialData.buttonStyle[SelectedStyleChanger.id].backgroundColor
+      <TriangleColorPicker
+        onColorSelected={(color) => {
+          switch (SelectedStyleChanger.type) {
+            case 'backgroundColor':
+              SpecialDataCopy.buttonStyle[
+                SelectedStyleChanger.id
+              ].backgroundColor = color;
+              setSpecialData(SpecialDataCopy);
+              setButtonStyles(SpecialDataCopy.buttonStyle);
+              setScreen('settings');
+
+              break;
+            case 'TextColor':
+              SpecialDataCopy.buttonStyle[SelectedStyleChanger.id].TextColor =
+                color;
+              setSpecialData(SpecialDataCopy);
+              setButtonStyles(SpecialDataCopy.buttonStyle);
+              setScreen('settings');
+              break;
+            case 'MainColor':
+              //for rerender
+              setSpecialData(SpecialDataCopy);
+              //actual logic
+              setMainColorFunc(color);
+              setMainColor(color);
+              setScreen('settings');
+              break;
           }
-          style={{ flex: 1 }}
-        />
-      ) : (
-        <TriangleColorPicker
-          onColorSelected={(color) => {
-            SpecialDataCopy.buttonStyle[SelectedStyleChanger.id].TextColor =
-              color;
-            setSpecialData(SpecialDataCopy);
-            setButtonStyles(SpecialDataCopy.buttonStyle);
-            setScreen('settings');
-          }}
-          defaultColor={
-            SpecialData.buttonStyle[SelectedStyleChanger.id].TextColor
-          }
-          style={{ flex: 1 }}
-        />
-      )}
+        }}
+        defaultColor={
+          SelectedStyleChanger.type === 'MainColor'
+            ? MainColor
+            : SpecialData.buttonStyle[SelectedStyleChanger.id].backgroundColor
+        }
+        style={{ flex: 1 }}
+      />
     </SafeAreaView>
   );
 };

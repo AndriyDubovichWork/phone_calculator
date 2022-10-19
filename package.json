@@ -1,6 +1,6 @@
 {
   "name": "phone_calculator",
-  "version": "4.5.0",
+  "version": "5.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && expo start",
