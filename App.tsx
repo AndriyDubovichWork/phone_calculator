@@ -6,6 +6,8 @@ import SettingsScreen from './components/ui/Screens/SettingsScreen/SettingsScree
 import { useAsync } from 'react-async';
 import { getImage } from './Storage/get/Img';
 import { buttonStyles } from './Storage/get/buttonStyles';
+import ColourPickerScreen from './components/ui/Screens/ColourPickerScreen/ColourPickerScreen';
+
 import {
   setdefaultStyles,
   defaultButtonsStyles,
@@ -17,7 +19,7 @@ const windowHeight = Dimensions.get('window').height;
 export const navbarHeight = screenHeight - windowHeight + StatusBarHeight;
 
 export default function App() {
-  setdefaultStyles();
+  // setdefaultStyles();
 
   const [screen, setScreen] = useState('main');
   const img: any = useAsync({ promiseFn: getImage }).data;
@@ -36,6 +38,7 @@ export default function App() {
       setSpecialData={setSpecialData}
     />
   );
+  const colourPicker = <ColourPickerScreen />;
   let component = main;
 
   switch (screen) {
@@ -45,6 +48,9 @@ export default function App() {
 
     case 'settings':
       component = settings;
+      break;
+    case 'colourPicker':
+      component = colourPicker;
       break;
   }
   return (

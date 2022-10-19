@@ -55,6 +55,7 @@ const ButtonsGrid = ({
         />
       ) : (
         <FunctionsGrid
+          buttonStyle={buttonStyle}
           showNumbersGrid={showNumbersGrid}
           setShowNumbersGrid={setShowNumbersGrid}
           CalculateString={CalculateString}

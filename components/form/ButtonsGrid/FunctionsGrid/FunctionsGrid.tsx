@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
-import LightGrayButton from '../../../ui/Buttons/LightGreyButton/LightGreyButton';
-import OrangeButton from '../../../ui/Buttons/OrangeButton/OrangeButton';
-import DarkGrayButton from '../../../ui/Buttons/DarkGreyButton/DarkGreyButton';
-import calculate from '../../../../helpers/algo/calculate';
 
-type FunctionsGridPropsType = {
+import calculate from '../../../../helpers/algo/calculate';
+import CircleButton from '../../../ui/Buttons/CircleButton/CircleButton';
+
+export type FunctionsGridPropsType = {
   CalculateString: string;
   setCalculateString: React.Dispatch<React.SetStateAction<string>>;
   pushToString: (input: string) => void;
 
   showNumbersGrid: boolean;
   setShowNumbersGrid: React.Dispatch<React.SetStateAction<boolean>>;
+  buttonStyle: any;
 };
 
 const FunctionsGrid = ({
@@ -20,55 +20,144 @@ const FunctionsGrid = ({
   CalculateString,
   setCalculateString,
   pushToString,
+  buttonStyle,
 }: FunctionsGridPropsType) => {
+  const data: any = [
+    [
+      {
+        title: 'AC',
+        style: buttonStyle[0],
+        onPress: () => setCalculateString(''),
+      },
+      {
+        title: 'N',
+        style: buttonStyle[0],
+        onPress: () => setShowNumbersGrid(!showNumbersGrid),
+      },
+      {
+        title: '<-',
+        style: buttonStyle[0],
+        onPress: () => setCalculateString(CalculateString.slice(0, -1)),
+      },
+      {
+        title: '√',
+        style: buttonStyle[2],
+        onPress: () => pushToString('√'),
+      },
+    ],
+    [
+      {
+        title: '7',
+        style: buttonStyle[1],
+        onPress: () => pushToString('7'),
+      },
+      {
+        title: '8',
+        style: buttonStyle[1],
+        onPress: () => pushToString('8'),
+      },
+      {
+        title: '9',
+        style: buttonStyle[1],
+        onPress: () => pushToString('9'),
+      },
+      {
+        title: '^',
+        style: buttonStyle[2],
+        onPress: () => pushToString('^'),
+      },
+    ],
+    [
+      {
+        title: '4',
+        style: buttonStyle[1],
+        onPress: () => pushToString('4'),
+      },
+      {
+        title: '5',
+        style: buttonStyle[1],
+        onPress: () => pushToString('5'),
+      },
+      {
+        title: '6',
+        style: buttonStyle[1],
+        onPress: () => pushToString('6'),
+      },
+      {
+        title: 'π',
+        style: buttonStyle[2],
+        onPress: () => pushToString('3.141592'),
+      },
+    ],
+    [
+      {
+        title: '1',
+        style: buttonStyle[1],
+        onPress: () => pushToString('1'),
+      },
+      {
+        title: '2',
+        style: buttonStyle[1],
+        onPress: () => pushToString('2'),
+      },
+      {
+        title: '3',
+        style: buttonStyle[1],
+        onPress: () => pushToString('3'),
+      },
+      {
+        title: 'e',
+        style: buttonStyle[2],
+        onPress: () => pushToString('2.71828'),
+      },
+    ],
+    [
+      {
+        title: '(',
+        style: buttonStyle[0],
+        onPress: () => pushToString('('),
+      },
+      {
+        title: '0',
+        style: buttonStyle[1],
+        onPress: () => pushToString('0'),
+      },
+      {
+        title: ')',
+        style: buttonStyle[0],
+        onPress: () => pushToString(')'),
+      },
+      {
+        title: '=',
+        style: buttonStyle[2],
+        onPress: () =>
+          setCalculateString(
+            (
+              Math.round(calculate(CalculateString) * 100000) / 100000
+            ).toString()
+          ),
+      },
+    ],
+  ];
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        <LightGrayButton onPress={() => setCalculateString('')} title='AC' />
-        <LightGrayButton
-          onPress={() => setShowNumbersGrid(!showNumbersGrid)}
-          title='N'
-        />
-        <LightGrayButton
-          onPress={() => setCalculateString(CalculateString.slice(0, -1))}
-          title='<-'
-        />
-        <OrangeButton onPress={() => pushToString('√')} title='√' />
-      </View>
-      <View style={styles.row}>
-        <DarkGrayButton onPress={() => pushToString('7')} title='7' />
-        <DarkGrayButton onPress={() => pushToString('8')} title='8' />
-        <DarkGrayButton onPress={() => pushToString('9')} title='9' />
-        <OrangeButton onPress={() => pushToString('^')} title='^' />
-      </View>
-      <View style={styles.row}>
-        <DarkGrayButton onPress={() => pushToString('4')} title='4' />
-        <DarkGrayButton onPress={() => pushToString('5')} title='5' />
-        <DarkGrayButton onPress={() => pushToString('6')} title='6' />
-        <OrangeButton onPress={() => pushToString('3.14159265359')} title='π' />
-      </View>
-      <View style={styles.row}>
-        <DarkGrayButton onPress={() => pushToString('1')} title='1' />
-        <DarkGrayButton onPress={() => pushToString('2')} title='2' />
-        <DarkGrayButton onPress={() => pushToString('3')} title='3' />
-        <OrangeButton onPress={() => pushToString('2.71828')} title='e' />
-      </View>
-      <View style={styles.row}>
-        <LightGrayButton onPress={() => pushToString('(')} title='(' />
-        <DarkGrayButton onPress={() => pushToString('0')} title='0' />
-        <LightGrayButton onPress={() => pushToString(')')} title=')' />
-
-        <OrangeButton
-          onPress={() => {
-            setCalculateString(
-              (
-                Math.round(calculate(CalculateString) * 100000) / 100000
-              ).toString()
-            );
-          }}
-          title='='
-        />
-      </View>
+      {data.map((row: any) => {
+        return (
+          <View style={styles.row} key={row[0].title}>
+            {row.map((Button: any) => {
+              return (
+                <CircleButton
+                  key={Button.title}
+                  onPress={Button.onPress}
+                  ButtonsStyles={Button.style}
+                  Text={Button.title}
+                  isDouble={Button.isDouble}
+                />
+              );
+            })}
+          </View>
+        );
+      })}
     </View>
   );
 };

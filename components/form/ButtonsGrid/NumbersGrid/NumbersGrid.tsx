@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { Dimensions, StyleSheet, View, Text } from 'react-native';
-import LightGrayButton from '../../../ui/Buttons/LightGreyButton/LightGreyButton';
-import OrangeButton from '../../../ui/Buttons/OrangeButton/OrangeButton';
-import DarkGrayButton from '../../../ui/Buttons/DarkGreyButton/DarkGreyButton';
-import DoubleButton from './../../../ui/Buttons/DoubleButton/DoubleButton';
 import calculate from '../../../../helpers/algo/calculate';
-import NumbersGridData from './../../../../ButtonsGrids/NumbersGrid';
 import CircleButton from '../../../ui/Buttons/CircleButton/CircleButton';
 
 export type NumbersGridPropsType = {
@@ -18,17 +13,136 @@ export type NumbersGridPropsType = {
   buttonStyle: any;
 };
 
-const NumbersGrid = (props: NumbersGridPropsType) => {
-  const data: any = NumbersGridData(props);
-  console.log(data);
+const NumbersGrid = ({
+  showNumbersGrid,
+  setShowNumbersGrid,
+  CalculateString,
+  setCalculateString,
+  pushToString,
+  buttonStyle,
+}: NumbersGridPropsType) => {
+  const data: any = [
+    [
+      {
+        title: 'AC',
+        style: buttonStyle[0],
+        onPress: () => setCalculateString(''),
+      },
+      {
+        title: 'F',
+        style: buttonStyle[0],
+        onPress: () => setShowNumbersGrid(!showNumbersGrid),
+      },
+      {
+        title: '<-',
+        style: buttonStyle[0],
+        onPress: () => setCalculateString(CalculateString.slice(0, -1)),
+      },
+      {
+        title: '÷',
+        style: buttonStyle[2],
+        onPress: () => pushToString('÷'),
+      },
+    ],
+    [
+      {
+        title: '7',
+        style: buttonStyle[1],
+        onPress: () => pushToString('7'),
+      },
+      {
+        title: '8',
+        style: buttonStyle[1],
+        onPress: () => pushToString('8'),
+      },
+      {
+        title: '9',
+        style: buttonStyle[1],
+        onPress: () => pushToString('9'),
+      },
+      {
+        title: 'x',
+        style: buttonStyle[2],
+        onPress: () => pushToString('x'),
+      },
+    ],
+    [
+      {
+        title: '4',
+        style: buttonStyle[1],
+        onPress: () => pushToString('4'),
+      },
+      {
+        title: '5',
+        style: buttonStyle[1],
+        onPress: () => pushToString('5'),
+      },
+      {
+        title: '6',
+        style: buttonStyle[1],
+        onPress: () => pushToString('6'),
+      },
+      {
+        title: '-',
+        style: buttonStyle[2],
+        onPress: () => pushToString('-'),
+      },
+    ],
+    [
+      {
+        title: '1',
+        style: buttonStyle[1],
+        onPress: () => pushToString('1'),
+      },
+      {
+        title: '2',
+        style: buttonStyle[1],
+        onPress: () => pushToString('2'),
+      },
+      {
+        title: '3',
+        style: buttonStyle[1],
+        onPress: () => pushToString('3'),
+      },
+      {
+        title: '+',
+        style: buttonStyle[2],
+        onPress: () => pushToString('+'),
+      },
+    ],
+    [
+      {
+        isDouble: true,
+        title: '0',
+        style: buttonStyle[1],
+        onPress: () => pushToString('0'),
+      },
+      {
+        title: '.',
+        style: buttonStyle[1],
+        onPress: () => pushToString('.'),
+      },
+      {
+        title: '=',
+        style: buttonStyle[2],
+        onPress: () =>
+          setCalculateString(
+            (
+              Math.round(calculate(CalculateString) * 100000) / 100000
+            ).toString()
+          ),
+      },
+    ],
+  ];
   return (
     <View style={styles.container}>
       {data.map((row: any) => {
         return (
-          <View style={styles.row}>
+          <View style={styles.row} key={row[0].title}>
             {row.map((Button: any) => {
               return (
                 <CircleButton
+                  key={Button.title}
                   onPress={Button.onPress}
                   ButtonsStyles={Button.style}
                   Text={Button.title}
