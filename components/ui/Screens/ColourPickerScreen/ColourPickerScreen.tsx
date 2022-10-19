@@ -1,5 +1,6 @@
-import { SafeAreaView } from 'react-native';
-import { TriangleColorPicker } from 'react-native-color-picker';
+import { useState } from 'react';
+import { Button, SafeAreaView } from 'react-native';
+import ColorPicker from 'react-native-wheel-color-picker';
 import { setButtonStyles } from '../../../../Storage/set/buttonStyles';
 import { setMainColor } from '../../../../Storage/set/mainColor';
 
@@ -32,7 +33,11 @@ const ColourPickerScreen = ({
   MainColor,
 }: ColourPickerScreenPropsType) => {
   let SpecialDataCopy = { ...SpecialData };
-
+  const [color, setColor] = useState(
+    SelectedStyleChanger.type === 'MainColor'
+      ? MainColor
+      : SpecialData.buttonStyle[SelectedStyleChanger.id].backgroundColor
+  );
   return (
     <SafeAreaView
       style={{
@@ -44,8 +49,10 @@ const ColourPickerScreen = ({
         backgroundColor: '#000',
       }}
     >
-      <TriangleColorPicker
-        onColorSelected={(color) => {
+      <ColorPicker color={color} onColorChange={(cl: string) => setColor(cl)} />
+      <Button
+        title='save'
+        onPress={() => {
           switch (SelectedStyleChanger.type) {
             case 'backgroundColor':
               SpecialDataCopy.buttonStyle[
@@ -73,12 +80,6 @@ const ColourPickerScreen = ({
               break;
           }
         }}
-        defaultColor={
-          SelectedStyleChanger.type === 'MainColor'
-            ? MainColor
-            : SpecialData.buttonStyle[SelectedStyleChanger.id].backgroundColor
-        }
-        style={{ flex: 1 }}
       />
     </SafeAreaView>
   );
