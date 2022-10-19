@@ -1,6 +1,7 @@
 import storage from './../Storage';
 import { setImg } from './img';
 import { setButtonStyles } from './buttonStyles';
+import { setMainColor } from './mainColor';
 
 export const defaultButtonsStyles = [
   {
@@ -22,5 +23,5 @@ export const defaultButtonsStyles = [
 
 export const setdefaultStyles = () => {
   setButtonStyles(defaultButtonsStyles);
-  setImg('');
+  setMainColor('#fff');
 };

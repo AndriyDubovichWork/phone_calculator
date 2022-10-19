@@ -11,6 +11,7 @@ import RegularButton from '../../Buttons/RegularButton/RegularButton';
 
 type SettingsScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
+  MainColor: string;
   img: string;
   setSpecialData: React.Dispatch<
     React.SetStateAction<{
@@ -36,6 +37,7 @@ export default function SettingsScreen({
   setSpecialData,
   SpecialData,
   setSelectedStyleChanger,
+  MainColor,
 }: SettingsScreenProps) {
   const ButtonsArray = [
     { id: 0, type: 'Technical', text: 'AC' },
@@ -61,7 +63,7 @@ export default function SettingsScreen({
       >
         <Icon
           name='arrowleft'
-          color={'#fff'}
+          color={MainColor}
           style={{ margin: 20 }}
           size={40}
           onPress={() => {
@@ -79,7 +81,7 @@ export default function SettingsScreen({
           return (
             <View style={{ flex: 1, flexDirection: 'row' }} key={text}>
               <Text
-                style={{ color: '#fff', fontSize: 20, alignSelf: 'center' }}
+                style={{ color: MainColor, fontSize: 20, alignSelf: 'center' }}
               >
                 {type}
               </Text>

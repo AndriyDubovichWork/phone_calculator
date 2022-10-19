@@ -3,10 +3,11 @@ import { RFPercentage } from 'react-native-responsive-fontsize';
 import Icon from 'react-native-vector-icons/AntDesign';
 type InputProps = {
   CalculateString: string;
+  MainColor: any;
   setScreen: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Input = ({ CalculateString, setScreen }: InputProps) => {
+const Input = ({ CalculateString, setScreen, MainColor }: InputProps) => {
   return (
     <View
       style={{
@@ -18,7 +19,7 @@ const Input = ({ CalculateString, setScreen }: InputProps) => {
     >
       <Icon
         name='setting'
-        color={'#fff'}
+        color={MainColor}
         size={35}
         onPress={() => {
           setScreen('settings');
@@ -32,7 +33,7 @@ const Input = ({ CalculateString, setScreen }: InputProps) => {
           position: 'absolute',
           bottom: 0,
           right: 0,
-          color: '#fff',
+          color: MainColor,
           fontSize: RFPercentage(6),
         }}
       >

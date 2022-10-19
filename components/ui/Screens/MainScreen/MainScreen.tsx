@@ -8,6 +8,7 @@ import storage from './../../../../Storage/Storage';
 type MainScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<string>>;
   img: string;
+  MainColor: any;
   SpecialData: {
     img: any;
     buttonStyle: any;
@@ -18,6 +19,7 @@ export default function MainScreen({
   setScreen,
   SpecialData,
   img,
+  MainColor,
 }: MainScreenProps) {
   const [CalculateString, setCalculateString] = useState('');
   return (
@@ -30,7 +32,11 @@ export default function MainScreen({
           width: '100%',
         }}
       >
-        <Input CalculateString={CalculateString} setScreen={setScreen} />
+        <Input
+          MainColor={MainColor}
+          CalculateString={CalculateString}
+          setScreen={setScreen}
+        />
         <ButtonsGrid
           buttonStyle={SpecialData.buttonStyle}
           CalculateString={CalculateString}

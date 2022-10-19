@@ -1,8 +1,8 @@
 import storage from '../Storage';
 
-export const getImage = async () => {
+export const getMainColor = async () => {
   return await storage.load({
-    key: 'backgroundImage',
+    key: 'mainColor',
     autoSync: true,
     syncInBackground: true,
   });

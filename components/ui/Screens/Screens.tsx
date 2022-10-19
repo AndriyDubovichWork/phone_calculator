@@ -9,9 +9,10 @@ import { screenHeight } from './../../../App';
 type ScreensPropsType = {
   img: string;
   buttonStyle: any;
+  MainColor: any;
 };
 
-const Screens = ({ img, buttonStyle }: ScreensPropsType) => {
+const Screens = ({ img, buttonStyle, MainColor }: ScreensPropsType) => {
   const [SpecialData, setSpecialData] = useState({
     img,
     buttonStyle,
@@ -22,10 +23,16 @@ const Screens = ({ img, buttonStyle }: ScreensPropsType) => {
   });
   const [screen, setScreen] = useState('main');
   const main = (
-    <MainScreen setScreen={setScreen} SpecialData={SpecialData} img={img} />
+    <MainScreen
+      MainColor={MainColor}
+      setScreen={setScreen}
+      SpecialData={SpecialData}
+      img={img}
+    />
   );
   const settings = (
     <SettingsScreen
+      MainColor={MainColor}
       img={img}
       setScreen={setScreen}
       SpecialData={SpecialData}
@@ -59,7 +66,6 @@ const Screens = ({ img, buttonStyle }: ScreensPropsType) => {
     <SafeAreaView
       style={{
         flex: 1,
-
         height: screenHeight,
         width: '100%',
         position: 'relative',
